@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>รักมั้ยยย? 💕</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ── THEME VARS (default: pink) ── */
+  :root {
+    --bg1: #ffe0ef; --bg2: #fce4f5; --bg3: #e8d5f5;
+    --card-shadow: rgba(230,80,140,0.18);
+    --card-border: rgba(255,180,210,0.5);
+    --h1: #d63877; --sub: #c06090; --input-text: #c03070;
+    --input-border: rgba(220,100,160,0.35); --input-bg: rgba(255,240,248,0.7);
+    --input-focus: #f05a99; --input-focus-ring: rgba(240,90,153,0.15);
+    --btn-a: #f05a99; --btn-b: #e0348a; --btn-shadow: rgba(220,60,130,0.35);
+    --tpl-bg: rgba(255,230,245,0.5); --tpl-border: rgba(220,100,160,0.2);
+    --tpl-hover: rgba(255,220,240,0.7); --tpl-sel-border: #f05a99; --tpl-sel-bg: rgba(255,200,230,0.5);
+    --tpl-sel-ring: rgba(240,90,153,0.15);
+    --section-label: #c06090; --preview-bg: rgba(255,225,242,0.6);
+    --preview-border: rgba(220,100,160,0.2); --preview-text: #c03070;
+    --petal1: #ffeef6; --hint: #c090b0;
+    --no-text: #c06090; --no-border: rgba(220,100,160,0.4);
+    --counter: #d06090;
+    --theme-dot-border: rgba(220,100,160,0.4);
+  }
+
+  /* ── THEME: SKY ── */
+  .theme-sky {
+    --bg1: #dff0ff; --bg2: #e8f4ff; --bg3: #d5e8fa;
+    --card-shadow: rgba(60,140,230,0.15);
+    --card-border: rgba(140,200,255,0.5);
+    --h1: #1a6fc4; --sub: #4090c0; --input-text: #1a5fa0;
+    --input-border: rgba(60,140,220,0.35); --input-bg: rgba(230,245,255,0.7);
+    --input-focus: #3a9eef; --input-focus-ring: rgba(60,160,240,0.15);
+    --btn-a: #3a9eef; --btn-b: #1a7ed0; --btn-shadow: rgba(30,110,210,0.35);
+    --tpl-bg: rgba(210,235,255,0.5); --tpl-border: rgba(80,160,220,0.2);
+    --tpl-hover: rgba(200,228,255,0.7); --tpl-sel-border: #3a9eef; --tpl-sel-bg: rgba(180,220,255,0.5);
+    --tpl-sel-ring: rgba(60,160,240,0.15);
+    --section-label: #4090c0; --preview-bg: rgba(210,238,255,0.6);
+    --preview-border: rgba(80,160,220,0.2); --preview-text: #1a5fa0;
+    --hint: #70a0c0; --no-text: #4090c0; --no-border: rgba(80,160,220,0.4);
+    --counter: #3080b0; --theme-dot-border: rgba(60,140,220,0.4);
+  }
+
+  /* ── THEME: DARK GOLD ── */
+  .theme-dark {
+    --bg1: #1a1220; --bg2: #201828; --bg3: #181018;
+    --card-shadow: rgba(200,150,0,0.2);
+    --card-border: rgba(200,160,40,0.35);
+    --h1: #f0c040; --sub: #c09030; --input-text: #e0b030;
+    --input-border: rgba(200,150,40,0.4); --input-bg: rgba(40,30,10,0.6);
+    --input-focus: #f0c040; --input-focus-ring: rgba(200,160,0,0.2);
+    --btn-a: #d4a012; --btn-b: #b08000; --btn-shadow: rgba(180,130,0,0.4);
+    --tpl-bg: rgba(50,35,5,0.6); --tpl-border: rgba(180,130,20,0.25);
+    --tpl-hover: rgba(70,50,10,0.7); --tpl-sel-border: #f0c040; --tpl-sel-bg: rgba(80,60,10,0.6);
+    --tpl-sel-ring: rgba(200,160,0,0.2);
+    --section-label: #c09030; --preview-bg: rgba(40,30,5,0.7);
+    --preview-border: rgba(180,130,20,0.25); --preview-text: #e0b030;
+    --hint: #806020; --no-text: #c09030; --no-border: rgba(180,130,20,0.4);
+    --counter: #e0b030; --theme-dot-border: rgba(200,150,40,0.4);
+  }
+  .theme-dark .card { background: rgba(28,20,38,0.9) !important; }
+  .theme-dark #namePage h1, .theme-dark #questionPage h1, .theme-dark .love-title { color: var(--h1); }
+  .theme-dark .tpl-card .tpl-name { color: var(--h1); }
+  .theme-dark .tpl-card .tpl-preview { color: var(--sub); }
+  .theme-dark .section-label { color: var(--section-label); }
+  .theme-dark .share-hint, .theme-dark .custom-hint { color: var(--hint); }
+  .theme-dark .preview-strip { color: var(--preview-text); }
+  .theme-dark .no-counter { color: var(--counter); }
+  .theme-dark .subtitle { color: var(--sub); }
+  .theme-dark .love-msg { color: var(--sub); }
+
+  /* ── THEME: PEACH ── */
+  .theme-peach {
+    --bg1: #fff0e0; --bg2: #ffe8d5; --bg3: #fad5b8;
+    --card-shadow: rgba(220,110,40,0.15);
+    --card-border: rgba(255,180,120,0.5);
+    --h1: #c85010; --sub: #b07040; --input-text: #a04010;
+    --input-border: rgba(210,110,50,0.35); --input-bg: rgba(255,245,235,0.7);
+    --input-focus: #e87030; --input-focus-ring: rgba(230,100,40,0.15);
+    --btn-a: #e87030; --btn-b: #c85010; --btn-shadow: rgba(200,80,20,0.35);
+    --tpl-bg: rgba(255,235,210,0.5); --tpl-border: rgba(210,130,60,0.2);
+    --tpl-hover: rgba(255,225,195,0.7); --tpl-sel-border: #e87030; --tpl-sel-bg: rgba(255,210,175,0.5);
+    --tpl-sel-ring: rgba(230,100,40,0.15);
+    --section-label: #b07040; --preview-bg: rgba(255,235,210,0.6);
+    --preview-border: rgba(210,130,60,0.2); --preview-text: #a04010;
+    --hint: #c09060; --no-text: #b07040; --no-border: rgba(210,130,60,0.4);
+    --counter: #c06030; --theme-dot-border: rgba(210,110,50,0.4);
+  }
+
+  /* ── THEME: MINT ── */
+  .theme-mint {
+    --bg1: #e0fff5; --bg2: #d5f5e8; --bg3: #c8edd8;
+    --card-shadow: rgba(20,160,100,0.15);
+    --card-border: rgba(100,210,160,0.5);
+    --h1: #0d7a50; --sub: #2a9060; --input-text: #0a6040;
+    --input-border: rgba(40,160,100,0.35); --input-bg: rgba(225,252,240,0.7);
+    --input-focus: #20c070; --input-focus-ring: rgba(30,180,100,0.15);
+    --btn-a: #20c070; --btn-b: #0d9050; --btn-shadow: rgba(10,140,70,0.35);
+    --tpl-bg: rgba(200,245,225,0.5); --tpl-border: rgba(50,180,110,0.2);
+    --tpl-hover: rgba(185,238,215,0.7); --tpl-sel-border: #20c070; --tpl-sel-bg: rgba(170,235,205,0.5);
+    --tpl-sel-ring: rgba(30,180,100,0.15);
+    --section-label: #2a9060; --preview-bg: rgba(200,245,225,0.6);
+    --preview-border: rgba(50,180,110,0.2); --preview-text: #0a6040;
+    --hint: #50a070; --no-text: #2a9060; --no-border: rgba(50,180,110,0.4);
+    --counter: #0d7a50; --theme-dot-border: rgba(40,160,100,0.4);
+  }
+
+  #app {
+    font-family: 'Sarabun', sans-serif; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(145deg, var(--bg1) 0%, var(--bg2) 40%, var(--bg3) 100%);
+    position: relative; overflow: hidden; padding: 20px;
+    transition: background 0.4s;
+  }
+
+  .petals-container { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+  .petal { position:absolute; top:-30px; opacity:0.7; animation: fall linear infinite; }
+  @keyframes fall {
+    0% { transform:translateY(-30px) rotate(0deg); opacity:0.8; }
+    100% { transform:translateY(110vh) rotate(360deg); opacity:0; }
+  }
+
+  .card {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-radius: 32px; padding: 40px 36px 36px;
+    max-width: 440px; width: 100%; text-align: center;
+    box-shadow: 0 20px 60px var(--card-shadow), 0 4px 20px var(--card-shadow);
+    position: relative; z-index: 1;
+    border: 1.5px solid var(--card-border);
+    transition: box-shadow 0.4s, border-color 0.4s;
+  }
+
+  /* ── THEME PICKER ── */
+  .theme-picker { display:flex; gap:10px; justify-content:center; margin-bottom:18px; }
+  .theme-dot {
+    width:28px; height:28px; border-radius:50%; cursor:pointer;
+    border: 2.5px solid transparent;
+    transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+    position:relative;
+  }
+  .theme-dot:hover { transform:scale(1.15); }
+  .theme-dot.active { border-color: var(--theme-dot-border); box-shadow:0 0 0 3px rgba(0,0,0,0.08); transform:scale(1.2); }
+  .dot-pink   { background: linear-gradient(135deg,#f05a99,#e0348a); }
+  .dot-sky    { background: linear-gradient(135deg,#3a9eef,#1a7ed0); }
+  .dot-dark   { background: linear-gradient(135deg,#f0c040,#1a1220); }
+  .dot-peach  { background: linear-gradient(135deg,#e87030,#fad5b8); }
+  .dot-mint   { background: linear-gradient(135deg,#20c070,#c8edd8); }
+
+  /* ── NAME PAGE ── */
+  #namePage { display:flex; flex-direction:column; align-items:center; }
+  #namePage .icon { font-size:52px; margin-bottom:8px; animation: heartbeat 1.4s ease-in-out infinite; }
+  @keyframes heartbeat {
+    0%,100%{transform:scale(1);} 30%{transform:scale(1.18);} 50%{transform:scale(1.08);} 70%{transform:scale(1.18);}
+  }
+  #namePage h1 { font-size:clamp(1.4rem,5vw,1.9rem); font-weight:700; color:var(--h1); margin-bottom:4px; transition:color 0.3s; }
+  #namePage .sub { font-size:0.85rem; color:var(--sub); margin-bottom:18px; opacity:0.8; transition:color 0.3s; }
+
+  .name-input-wrap { position:relative; width:100%; margin-bottom:12px; }
+  .name-input-wrap input {
+    width:100%; padding:13px 44px 13px 18px;
+    border:2px solid var(--input-border); border-radius:50px;
+    font-size:1rem; font-family:'Sarabun',sans-serif; color:var(--input-text);
+    background:var(--input-bg); outline:none;
+    transition:border-color 0.2s, box-shadow 0.2s, color 0.3s, background 0.3s;
+  }
+  .name-input-wrap input:focus { border-color:var(--input-focus); box-shadow:0 0 0 3px var(--input-focus-ring); }
+  .name-input-wrap input::placeholder { color:rgba(190,100,140,0.5); }
+  .theme-sky .name-input-wrap input::placeholder { color:rgba(60,120,180,0.4); }
+  .theme-dark .name-input-wrap input::placeholder { color:rgba(180,130,30,0.4); }
+  .theme-peach .name-input-wrap input::placeholder { color:rgba(180,100,50,0.4); }
+  .theme-mint .name-input-wrap input::placeholder { color:rgba(30,140,80,0.4); }
+  .name-input-wrap .input-icon { position:absolute; right:16px; top:50%; transform:translateY(-50%); font-size:18px; pointer-events:none; }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size:0.78rem; font-weight:700; color:var(--section-label); letter-spacing:0.08em;
+    text-transform:uppercase; opacity:0.7; margin:14px 0 10px; width:100%; text-align:left;
+    transition:color 0.3s;
+  }
+
+  /* ── TEMPLATES ── */
+  .templates-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; width:100%; margin-bottom:4px; }
+  .tpl-card {
+    background:var(--tpl-bg); border:2px solid var(--tpl-border);
+    border-radius:16px; padding:11px 12px; cursor:pointer; text-align:left;
+    transition:all 0.18s; position:relative; overflow:hidden;
+  }
+  .tpl-card:hover { border-color:var(--input-focus); background:var(--tpl-hover); transform:translateY(-1px); }
+  .tpl-card.selected { border-color:var(--tpl-sel-border); background:var(--tpl-sel-bg); box-shadow:0 0 0 3px var(--tpl-sel-ring); }
+  .tpl-card .tpl-emoji { font-size:18px; margin-bottom:4px; display:block; }
+  .tpl-card .tpl-name { font-size:0.78rem; font-weight:700; color:var(--h1); display:block; margin-bottom:2px; transition:color 0.3s; }
+  .tpl-card .tpl-preview { font-size:0.7rem; color:var(--sub); opacity:0.75; line-height:1.4; display:block; transition:color 0.3s; }
+  .tpl-card.custom-card { border-style:dashed; }
+
+  /* ── CUSTOM SECTION ── */
+  .custom-section { width:100%; margin-top:6px; display:none; }
+  .custom-section.show { display:block; }
+  .custom-section textarea {
+    width:100%; padding:12px 16px;
+    border:2px solid var(--input-border); border-radius:16px;
+    font-size:0.88rem; font-family:'Sarabun',sans-serif; color:var(--input-text);
+    background:var(--input-bg); outline:none; resize:none;
+    transition:border-color 0.2s, box-shadow 0.2s; line-height:1.6; margin-bottom:8px;
+  }
+  .custom-section textarea:focus { border-color:var(--input-focus); box-shadow:0 0 0 3px var(--input-focus-ring); }
+  .custom-hint { font-size:0.72rem; color:var(--hint); text-align:left; line-height:1.6; margin-bottom:6px; transition:color 0.3s; }
+  .custom-hint code { background:rgba(240,100,160,0.1); border-radius:4px; padding:1px 5px; font-size:0.7rem; color:var(--input-text); }
+  .custom-section input[type=text] {
+    width:100%; padding:9px 14px;
+    border:2px solid var(--input-border); border-radius:50px;
+    font-size:0.85rem; font-family:'Sarabun',sans-serif; color:var(--input-text);
+    background:var(--input-bg); outline:none; margin-bottom:8px;
+    transition:border-color 0.2s, box-shadow 0.2s;
+  }
+  .custom-section input[type=text]:focus { border-color:var(--input-focus); box-shadow:0 0 0 3px var(--input-focus-ring); }
+
+  /* ── PREVIEW ── */
+  .preview-strip {
+    background:var(--preview-bg); border-radius:12px; padding:9px 14px;
+    font-size:0.8rem; color:var(--preview-text); text-align:left; line-height:1.6;
+    border:1px solid var(--preview-border); width:100%; margin-top:4px; margin-bottom:14px;
+    word-break:break-word; transition:all 0.3s;
+  }
+  .preview-strip .pv-label { font-size:0.7rem; color:var(--hint); display:block; margin-bottom:3px; }
+
+  /* ── BUTTONS ── */
+  .btn-start {
+    padding:13px 36px; margin-top:2px;
+    background:linear-gradient(135deg, var(--btn-a), var(--btn-b));
+    color:white; border:none; border-radius:50px;
+    font-size:1.05rem; font-family:'Sarabun',sans-serif; font-weight:700;
+    cursor:pointer; box-shadow:0 6px 24px var(--btn-shadow);
+    transition:transform 0.15s, box-shadow 0.15s, background 0.3s; width:100%;
+  }
+  .btn-start:hover { transform:translateY(-2px); box-shadow:0 10px 28px var(--btn-shadow); }
+  .btn-start:active { transform:scale(0.97); }
+
+  .share-hint {
+    margin-top:14px; font-size:0.75rem; color:var(--hint);
+    border-top:1px dashed var(--input-border); padding-top:12px; line-height:1.8;
+    width:100%; text-align:center; transition:color 0.3s;
+  }
+  .share-hint code {
+    background:rgba(240,100,160,0.08); border-radius:6px;
+    padding:2px 8px; font-size:0.72rem; color:var(--input-text);
+    word-break:break-all; user-select:all; cursor:pointer; display:block; margin-top:4px;
+  }
+
+  /* ── QUESTION PAGE ── */
+  #questionPage { display:none; flex-direction:column; align-items:center; }
+  .gif-wrap { margin:0 auto 18px; border-radius:20px; overflow:hidden; width:min(180px,55vw); box-shadow:0 8px 30px var(--card-shadow); }
+  .gif-wrap img { width:100%; display:block; }
+  #questionPage h1 { font-size:clamp(1.3rem,5vw,1.9rem); font-weight:700; color:var(--h1); margin-bottom:8px; line-height:1.4; }
+  .subtitle { font-size:0.88rem; color:var(--sub); margin-bottom:26px; opacity:0.8; }
+  .btn-row { display:flex; gap:16px; justify-content:center; align-items:center; }
+  .btn-yes {
+    padding:13px 32px;
+    background:linear-gradient(135deg, var(--btn-a), var(--btn-b));
+    color:white; border:none; border-radius:50px;
+    font-size:1.05rem; font-family:'Sarabun',sans-serif; font-weight:700;
+    cursor:pointer; box-shadow:0 6px 24px var(--btn-shadow);
+    transition:transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-yes:hover { transform:translateY(-3px) scale(1.04); }
+  .btn-yes:active { transform:scale(0.97); }
+  #noBtn {
+    display:none; padding:13px 32px;
+    background:rgba(255,255,255,0.9); color:var(--no-text);
+    border:2px solid var(--no-border); border-radius:50px;
+    font-size:1.05rem; font-family:'Sarabun',sans-serif; font-weight:700;
+    cursor:pointer; position:fixed; z-index:100;
+    transition:left 0.2s ease, top 0.2s ease;
+    box-shadow:0 4px 16px rgba(0,0,0,0.08);
+  }
+  .no-counter { margin-top:14px; font-size:0.82rem; color:var(--counter); min-height:18px; opacity:0.75; }
+
+  /* ── LOVE PAGE ── */
+  #lovePage { display:none; flex-direction:column; align-items:center; }
+  .love-gif-wrap {
+    border-radius:20px; overflow:hidden; width:min(200px,60vw);
+    box-shadow:0 8px 30px var(--card-shadow); margin-bottom:18px;
+    animation:popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275) forwards;
+  }
+  .love-gif-wrap img { width:100%; display:block; }
+  @keyframes popIn { 0%{transform:scale(0);opacity:0;} 100%{transform:scale(1);opacity:1;} }
+  .love-title { font-size:clamp(1.3rem,5vw,1.9rem); font-weight:700; color:var(--h1); margin-bottom:8px; line-height:1.4; animation:slideUp 0.5s 0.15s ease both; }
+  .love-msg { font-size:0.95rem; color:var(--sub); animation:slideUp 0.5s 0.3s ease both; line-height:1.6; }
+  .confetti-row { margin-top:18px; font-size:1.4rem; letter-spacing:8px; animation:slideUp 0.5s 0.45s ease both; }
+  @keyframes slideUp { 0%{transform:translateY(20px);opacity:0;} 100%{transform:translateY(0);opacity:1;} }
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="petals-container" id="petals"></div>
+  <div class="card">
+
+    <!-- NAME PAGE -->
+    <div id="namePage">
+      <span class="icon">💕</span>
+      <h1>ใส่ชื่อทั้งคู่เลย~</h1>
+      <p class="sub">เลือกโทนสี เทมเพลต หรือใส่คำเองก็ได้</p>
+
+      <!-- THEME PICKER -->
+      <div class="theme-picker">
+        <div class="theme-dot dot-pink active"  onclick="setTheme('pink','💕')"  title="ชมพู"></div>
+        <div class="theme-dot dot-sky"           onclick="setTheme('sky','💙')"   title="ฟ้า"></div>
+        <div class="theme-dot dot-dark"          onclick="setTheme('dark','🖤')"  title="ดำ-ทอง"></div>
+        <div class="theme-dot dot-peach"         onclick="setTheme('peach','🍑')" title="พีช"></div>
+        <div class="theme-dot dot-mint"          onclick="setTheme('mint','🌿')"  title="มิ้นต์"></div>
+      </div>
+
+      <div class="name-input-wrap">
+        <input id="name1Input" type="text" placeholder="ชื่อเรา..." maxlength="30" autocomplete="off"/>
+        <span class="input-icon">🌸</span>
+      </div>
+      <div class="name-input-wrap">
+        <input id="name2Input" type="text" placeholder="ชื่อแฟน..." maxlength="30" autocomplete="off"/>
+        <span class="input-icon" id="iconEmoji">💕</span>
+      </div>
+
+      <div class="section-label">เลือกสไตล์</div>
+      <div class="templates-grid">
+        <div class="tpl-card selected" data-id="classic" onclick="selectTemplate('classic')">
+          <span class="tpl-emoji">💕</span>
+          <span class="tpl-name">Classic</span>
+          <span class="tpl-preview">"[เรา] รัก [แฟน] นะ แล้ว [แฟน] รักมั้ย?"</span>
+        </div>
+        <div class="tpl-card" data-id="shy" onclick="selectTemplate('shy')">
+          <span class="tpl-emoji">🙈</span>
+          <span class="tpl-name">ขี้อาย</span>
+          <span class="tpl-preview">"อยากบอกว่า... [เรา] ชอบ [แฟน] มากนะ 🥺"</span>
+        </div>
+        <div class="tpl-card" data-id="bold" onclick="selectTemplate('bold')">
+          <span class="tpl-emoji">🔥</span>
+          <span class="tpl-name">มั่นใจ</span>
+          <span class="tpl-preview">"[แฟน]! [เรา] รักแกนะ จะปฏิเสธไม่ได้!"</span>
+        </div>
+        <div class="tpl-card custom-card" data-id="custom" onclick="selectTemplate('custom')">
+          <span class="tpl-emoji">✏️</span>
+          <span class="tpl-name">ใส่เอง</span>
+          <span class="tpl-preview">เขียนคำถาม & ข้อความเองได้เลย~</span>
+        </div>
+      </div>
+
+      <div class="custom-section" id="customSection">
+        <div class="custom-hint">ใช้ <code>[ชื่อเรา]</code> และ <code>[ชื่อแฟน]</code> แทนชื่อ</div>
+        <textarea id="customQuestion" rows="2" placeholder="คำถาม เช่น: [ชื่อแฟน] รัก [ชื่อเรา] มั้ยนะ? 🥺"></textarea>
+        <textarea id="customLoveTitle" rows="1" placeholder="หัวข้อตอนกด รัก เช่น: เย้!! รู้อยู่แล้วนนน~ 🎉"></textarea>
+        <textarea id="customLoveMsg" rows="2" placeholder="ข้อความตอนกด รัก เช่น: [ชื่อเรา] ดีใจมากเลยยย 💖"></textarea>
+        <div class="custom-hint">ปุ่ม "ไม่" จะหนีเองอยู่แล้ว~ 😏</div>
+        <input type="text" id="customNoBtn" placeholder='ข้อความปุ่มไม่ เช่น: ยังไม่แน่ใจ... 😒' maxlength="30"/>
+      </div>
+
+      <div class="preview-strip" id="previewStrip">
+        <span class="pv-label">ตัวอย่างคำถาม 👀</span>
+        <span id="previewText">[ชื่อเรา] รัก [ชื่อแฟน] นะ แล้ว [ชื่อแฟน] รัก [ชื่อเรา] มั้ย? 💕</span>
+      </div>
+
+      <button class="btn-start" onclick="startWithName()">สร้างลิงก์ 💌</button>
+      <div class="share-hint" id="shareHint"></div>
+    </div>
+
+    <!-- QUESTION PAGE -->
+    <div id="questionPage">
+      <div class="gif-wrap">
+        <img src="https://media.giphy.com/media/MpNy5P7x5vWM0/giphy.gif" alt="nervous cat">
+      </div>
+      <h1 id="questionText">รักกันมั้ยน้าา? 💕</h1>
+      <p class="subtitle">คิดให้ดีก่อนนะ~</p>
+      <div class="btn-row" id="btnRow">
+        <button class="btn-yes" onclick="showLove()">รัก ❤️</button>
+        <div id="noSpacer" style="width:120px;height:50px;"></div>
+      </div>
+      <div class="no-counter" id="noCounter"></div>
+    </div>
+
+    <!-- LOVE PAGE -->
+    <div id="lovePage">
+      <div class="love-gif-wrap">
+        <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="love gif">
+      </div>
+      <h1 class="love-title" id="loveTitle">รู้อยู่แล้วว่าต้องรักกันน!</h1>
+      <p class="love-msg" id="loveMsg">หัวใจมันบอกอยู่แล้วนี่หนา 💕</p>
+      <div class="confetti-row">🎉✨💕🎊</div>
+    </div>
+  </div>
+</div>
+
+<button id="noBtn">ไม่ 😒</button>
+
+<script>
+// ── THEMES ──
+const THEME_PETALS = {
+  pink:  ['🌸','🌺','💮','🌷','✿','❀'],
+  sky:   ['❄️','💧','🫧','🌊','⭐','✨'],
+  dark:  ['✨','⭐','🌙','💫','🔮','🌟'],
+  peach: ['🍑','🌸','🌼','🌻','🍊','✿'],
+  mint:  ['🌿','🍃','🌱','☘️','🌾','✨']
+};
+const THEME_ICONS = { pink:'💕', sky:'💙', dark:'🖤', peach:'🍑', mint:'🌿' };
+
+let currentTheme = 'pink';
+
+function setTheme(theme, emoji) {
+  currentTheme = theme;
+  const app = document.getElementById('app');
+  app.className = theme === 'pink' ? '' : 'theme-'+theme;
+  document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
+  document.querySelector('.dot-'+theme).classList.add('active');
+  document.getElementById('iconEmoji').textContent = THEME_ICONS[theme];
+  rebuildPetals(theme);
+  // update noBtn colors via CSS vars (already handled by vars)
+}
+
+function rebuildPetals(theme) {
+  const container = document.getElementById('petals');
+  container.innerHTML = '';
+  const emojis = THEME_PETALS[theme] || THEME_PETALS.pink;
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    p.style.left = (Math.random()*100)+'vw';
+    p.style.animationDuration = (4+Math.random()*6)+'s';
+    p.style.animationDelay = (Math.random()*6)+'s';
+    p.style.fontSize = (12+Math.random()*14)+'px';
+    container.appendChild(p);
+  }
+}
+
+// ── TEMPLATES ──
+const TEMPLATES = {
+  classic: {
+    question:  (n1,n2) => n1+'รัก'+n2+'นะ แล้ว '+n2+'รัก'+n1+'มั้ย? 💕',
+    loveTitle: (n1,n2) => n1+'รัก'+n2+'ที่สุดเยยย! 🥰',
+    loveMsg:   (n1,n2) => 'รู้อยู่แล้วว่ารักกันน 💕<br>'+n1+' ดีใจม๊ากก~ 😘',
+    noLabel:   ()      => 'ไม่ 😒',
+    previewQ:  ()      => '[ชื่อเรา] รัก [ชื่อแฟน] นะ แล้ว [ชื่อแฟน] รัก [ชื่อเรา] มั้ย? 💕'
+  },
+  shy: {
+    question:  (n1,n2) => 'อยากบอกว่า... '+n1+' ชอบ '+n2+' มากนะ 🥺\nแล้ว '+n2+' ล่ะ... มีความรู้สึกบ้างมั้ย?',
+    loveTitle: (n1,n2) => '💗 '+n2+' ทำให้ '+n1+' ใจเต้นเลยยย',
+    loveMsg:   (n1,n2) => n1+' อยากจะกอดแกเลยตอนนี้เลยนะ 🫂<br>ขอบคุณที่รักกันด้วยนะ~ 💕',
+    noLabel:   ()      => 'ยัง... 🙈',
+    previewQ:  ()      => 'อยากบอกว่า... [ชื่อเรา] ชอบ [ชื่อแฟน] มากนะ 🥺\nแล้ว [ชื่อแฟน] ล่ะ มีความรู้สึกบ้างมั้ย?'
+  },
+  bold: {
+    question:  (n1,n2) => n2+'!! '+n1+' รักแกนะ\nจะปฏิเสธก็ไม่ได้นะ! 😤',
+    loveTitle: (n1,n2) => 'เห็นมั้ย! บอกแล้วว่ารัก! 🔥',
+    loveMsg:   (n1,n2) => n1+' รู้อยู่แล้วว่า '+n2+' รัก 😏<br>ตอนนี้ก็ได้เป็นแฟนกันอย่างเป็นทางการแล้ว~',
+    noLabel:   ()      => 'โกหก 😤',
+    previewQ:  ()      => '[ชื่อแฟน]!! [ชื่อเรา] รักแกนะ\nจะปฏิเสธก็ไม่ได้นะ! 😤'
+  },
+  custom: { previewQ: () => '(ตามที่กรอก)' }
+};
+
+let selectedTpl = 'classic';
+
+function selectTemplate(id) {
+  selectedTpl = id;
+  document.querySelectorAll('.tpl-card').forEach(c => c.classList.remove('selected'));
+  document.querySelector('[data-id="'+id+'"]').classList.add('selected');
+  document.getElementById('customSection').classList.toggle('show', id==='custom');
+  updatePreview();
+}
+
+function applyNames(str,n1,n2) {
+  return str.replace(/\[ชื่อเรา\]/g,n1).replace(/\[ชื่อแฟน\]/g,n2);
+}
+
+function updatePreview() {
+  const n1 = document.getElementById('name1Input').value.trim() || '[ชื่อเรา]';
+  const n2 = document.getElementById('name2Input').value.trim() || '[ชื่อแฟน]';
+  let txt;
+  if (selectedTpl==='custom') {
+    const raw = document.getElementById('customQuestion').value.trim();
+    txt = raw ? applyNames(raw,n1,n2) : TEMPLATES.classic.previewQ();
+  } else {
+    txt = TEMPLATES[selectedTpl].previewQ().replace(/\[ชื่อเรา\]/g,n1).replace(/\[ชื่อแฟน\]/g,n2);
+  }
+  document.getElementById('previewText').textContent = txt;
+}
+
+['name1Input','name2Input','customQuestion','customLoveTitle','customLoveMsg','customNoBtn'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', updatePreview);
+});
+
+// ── NO BUTTON ──
+const noBtn = document.getElementById('noBtn');
+const noCounter = document.getElementById('noCounter');
+let noCount=0, curX=0, curY=0;
+const msgs = ["หลอกตัวเองอยู่นะ 😏","แน่ใจแล้วหรอ? 🤨","โกหกใครอยู่อ่ะ 😤","กดไม่ถูกเลย~ 🙈","ยิ่งหนีก็ยิ่งรัก 💓","เลิกพยายามเลย 🫣","รักแน่ๆ เลย! 💘"];
+
+function showNoBtn() {
+  const sp=document.getElementById('noSpacer');
+  const r=sp.getBoundingClientRect();
+  curX=r.left; curY=r.top;
+  noBtn.style.transition='none';
+  noBtn.style.left=curX+'px'; noBtn.style.top=curY+'px';
+  noBtn.style.display='block';
+  noBtn.getBoundingClientRect();
+  noBtn.style.transition='left 0.2s ease, top 0.2s ease';
+}
+
+function dodgeNo(e) {
+  if(e) e.preventDefault();
+  const bw=noBtn.offsetWidth||120, bh=noBtn.offsetHeight||50, pad=20;
+  const maxX=window.innerWidth-bw-pad, maxY=window.innerHeight-bh-pad;
+  let nx,ny,tries=0;
+  do {
+    const angle=Math.random()*2*Math.PI, dist=100+Math.random()*200;
+    nx=curX+Math.cos(angle)*dist; ny=curY+Math.sin(angle)*dist; tries++;
+  } while(tries<30&&(nx<pad||nx>maxX||ny<pad||ny>maxY));
+  nx=Math.max(pad,Math.min(nx,maxX)); ny=Math.max(pad,Math.min(ny,maxY));
+  curX=nx; curY=ny;
+  noBtn.style.left=nx+'px'; noBtn.style.top=ny+'px';
+  noCount++;
+  noCounter.textContent=msgs[Math.min(noCount-1,msgs.length-1)];
+}
+
+noBtn.addEventListener('click',dodgeNo);
+noBtn.addEventListener('touchstart',dodgeNo,{passive:false});
+
+// ── URL PARAMS ──
+const params=new URLSearchParams(window.location.search);
+const pN1=(params.get('n1')||'').trim();
+const pN2=(params.get('n2')||'').trim();
+const pTpl=params.get('t')||'classic';
+const pTheme=params.get('th')||'pink';
+const pQ=(params.get('q')||'').trim();
+const pLT=(params.get('lt')||'').trim();
+const pLM=(params.get('lm')||'').trim();
+const pNL=(params.get('nl')||'').trim();
+
+if(pN1&&pN2) {
+  window.addEventListener('load',()=>{
+    setTheme(pTheme, THEME_ICONS[pTheme]||'💕');
+    goToQuestion(pN1,pN2,pTpl,pQ,pLT,pLM,pNL);
+  });
+}
+
+document.getElementById('name1Input').addEventListener('keydown',e=>{ if(e.key==='Enter') document.getElementById('name2Input').focus(); });
+document.getElementById('name2Input').addEventListener('keydown',e=>{ if(e.key==='Enter') startWithName(); });
+
+function startWithName() {
+  const v1=document.getElementById('name1Input').value.trim();
+  const v2=document.getElementById('name2Input').value.trim();
+  const inp1=document.getElementById('name1Input'), inp2=document.getElementById('name2Input');
+  if(!v1){inp1.focus();inp1.style.borderColor='var(--input-focus)';setTimeout(()=>inp1.style.borderColor='',800);return;}
+  if(!v2){inp2.focus();inp2.style.borderColor='var(--input-focus)';setTimeout(()=>inp2.style.borderColor='',800);return;}
+
+  let cQ='',cLT='',cLM='',cNL='';
+  if(selectedTpl==='custom'){
+    cQ=document.getElementById('customQuestion').value.trim();
+    cLT=document.getElementById('customLoveTitle').value.trim();
+    cLM=document.getElementById('customLoveMsg').value.trim();
+    cNL=document.getElementById('customNoBtn').value.trim();
+    if(!cQ){const el=document.getElementById('customQuestion');el.style.borderColor='var(--input-focus)';el.focus();setTimeout(()=>el.style.borderColor='',800);return;}
+  }
+
+  const url=new URL(window.location.href);
+  url.searchParams.set('n1',v1); url.searchParams.set('n2',v2);
+  url.searchParams.set('t',selectedTpl); url.searchParams.set('th',currentTheme);
+  if(selectedTpl==='custom'){
+    url.searchParams.set('q',cQ);
+    if(cLT) url.searchParams.set('lt',cLT);
+    if(cLM) url.searchParams.set('lm',cLM);
+    if(cNL) url.searchParams.set('nl',cNL);
+  }
+  history.replaceState(null,'',url.toString());
+
+  const hint=document.getElementById('shareHint');
+  hint.innerHTML='ส่งลิงก์นี้ให้ <strong style="color:var(--h1)">'+v2+'</strong> เปิดนะ~<br><code>'+url.toString()+'</code>';
+  const copyBtn=document.createElement('button');
+  copyBtn.textContent='📋 คัดลอกลิงก์';
+  copyBtn.style.cssText='margin-top:8px;padding:7px 18px;background:linear-gradient(135deg,var(--btn-a),var(--btn-b));color:white;border:none;border-radius:50px;font-size:0.82rem;font-family:Sarabun,sans-serif;font-weight:700;cursor:pointer;';
+  copyBtn.onclick=()=>{
+    navigator.clipboard.writeText(url.toString()).then(()=>{
+      copyBtn.textContent='✅ คัดลอกแล้ว!';
+      setTimeout(()=>copyBtn.textContent='📋 คัดลอกลิงก์',2000);
+    });
+  };
+  hint.appendChild(document.createElement('br'));
+  hint.appendChild(copyBtn);
+}
+
+function goToQuestion(n1,n2,tpl,cQ,cLT,cLM,cNL) {
+  let qText,lTitle,lMsg,nLabel;
+  if(tpl==='custom'&&cQ){
+    qText=applyNames(cQ,n1,n2);
+    lTitle=cLT?applyNames(cLT,n1,n2):n1+'รัก'+n2+'ที่สุดเยยย! 🥰';
+    lMsg=cLM?applyNames(cLM,n1,n2):'รู้อยู่แล้วว่ารักกันน 💕<br>'+n1+' ดีใจม๊ากก~ 😘';
+    nLabel=cNL||'ไม่ 😒';
+  } else {
+    const t=TEMPLATES[tpl]||TEMPLATES.classic;
+    qText=t.question(n1,n2); lTitle=t.loveTitle(n1,n2); lMsg=t.loveMsg(n1,n2); nLabel=t.noLabel();
+  }
+  document.getElementById('questionText').textContent=qText;
+  document.getElementById('loveTitle').textContent=lTitle;
+  document.getElementById('loveMsg').innerHTML=lMsg;
+  noBtn.textContent=nLabel;
+  document.getElementById('namePage').style.display='none';
+  document.getElementById('questionPage').style.display='flex';
+  noCount=0; noCounter.textContent='';
+  requestAnimationFrame(()=>requestAnimationFrame(showNoBtn));
+}
+
+function showLove() {
+  document.getElementById('questionPage').style.display='none';
+  document.getElementById('lovePage').style.display='flex';
+  noBtn.style.display='none';
+  makeBurst();
+}
+
+function makeBurst() {
+  const sets={ pink:['💖','💕','✨','🌸','💗','🎉'], sky:['💙','❄️','✨','💧','⭐','🎉'], dark:['✨','⭐','💛','🌙','💫','🎉'], peach:['🍑','💛','✨','🌸','🎉','🌼'], mint:['🌿','💚','✨','🍃','🎉','☘️'] };
+  const emojis=sets[currentTheme]||sets.pink;
+  for(let i=0;i<30;i++){
+    const el=document.createElement('div');
+    el.style.cssText='position:fixed;pointer-events:none;z-index:999;font-size:'+(16+Math.random()*18)+'px;left:'+(Math.random()*100)+'vw;top:'+(Math.random()*100)+'vh;animation:burstFly '+(0.8+Math.random()*1.2)+'s ease forwards;';
+    el.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),2200);
+  }
+}
+
+const s=document.createElement('style');
+s.textContent='@keyframes burstFly{0%{transform:scale(0) rotate(0deg);opacity:1;}60%{opacity:1;}100%{transform:scale(1.5) translateY(-70px) rotate(180deg);opacity:0;}}';
+document.head.appendChild(s);
+
+// Init petals
+rebuildPetals('pink');
+updatePreview();
+</script>
+</body>
+</html>
